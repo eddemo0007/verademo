@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "axios": "^0.21.1",
+    "crypto": "^1.0.1",
+    "mathjs": "^9.3.0",
+    "nocivo": "2.0.1"
+  },
+  "scripts": {
+    "results-import": "node VeracodeSASTResultsImport.js" 
+  }
+}
+
