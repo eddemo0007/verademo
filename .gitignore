@@ -1,27 +1,74 @@
-app/target/
-node_modules/
-target/
+########################################
+# OS / General
+########################################
 .DS_Store
+Thumbs.db
+*.log
+*.tmp
 
-# Java / Maven
+########################################
+# IntelliJ / IDE
+########################################
+.idea/
+*.iml
+out/
+
+########################################
+# VSCode
+########################################
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+########################################
+# Node / Frontend
+########################################
+node_modules/
+npm-debug.log*
+yarn-error.log*
+dist/
+build/
+coverage/
+
+########################################
+# Java / Maven / Spring
+########################################
+target/
+app/target/
 *.class
 *.jar
 *.war
 *.ear
 .mvn/wrapper/maven-wrapper.jar
 
-# Logs
-*.log
-logs/
+########################################
+# Docker
+########################################
+docker-compose.override.yml
 
-# Env files
+########################################
+# Environment / Secrets
+########################################
 .env
 .env.*
+*.key
+*.pem
+*.p12
 
-# IDEs
-.idea/
-*.iml
-.vscode/
+########################################
+# Veracode / Scan Artifacts (Demo Safety)
+########################################
+.veracode/
+.veracode-cache/
+*.scan
+*.results
 
-# OS files
-Thumbs.db
+########################################
+# Temporary Files
+########################################
+tmp/
+temp/
+.cache/
+
+# Extra logs
+logs/
