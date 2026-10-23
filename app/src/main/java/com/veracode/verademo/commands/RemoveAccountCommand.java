@@ -36,21 +36,26 @@ public class RemoveAccountCommand implements BlabberCommand {
 			action.setString(2, blabberUsername);
 			action.execute();
 
-			sqlQuery = "SELECT blab_name FROM users WHERE username = '" + blabberUsername + "'";
 			Statement sqlStatement = connect.createStatement();
-			logger.info(sqlQuery);
-			ResultSet result = sqlStatement.executeQuery(sqlQuery);
+sqlQuery = "SELECT blab_name FROM users WHERE username = ?";
+PreparedStatement sqlStatement2 = connect.prepareStatement(sqlQuery);
+sqlStatement2.setString(1, blabberUsername);
+logger.info(sqlQuery);
+ResultSet result = sqlStatement2.executeQuery();
 			result.next();
 
 			/* START EXAMPLE VULNERABILITY */
 			String event = "Removed account for blabber " + result.getString(1);
-			sqlQuery = "INSERT INTO users_history (blabber, event) VALUES ('" + blabberUsername + "', '" + event + "')";
-			logger.info(sqlQuery);
-			sqlStatement.execute(sqlQuery);
+sqlQuery = "INSERT INTO users_history (blabber, event) VALUES (?, ?)";
+logger.info(sqlQuery);
+PreparedStatement sqlStatement2 = connect.prepareStatement(sqlQuery);
+sqlStatement2.setString(1, blabberUsername);
+sqlStatement2.setString(2, event);
+sqlStatement2.execute();
 
-			sqlQuery = "DELETE FROM users WHERE username = '" + blabberUsername + "'";
-			logger.info(sqlQuery);
-			sqlStatement.execute(sqlQuery);
+PreparedStatement sqlStatement2 = connect.prepareStatement("DELETE FROM users WHERE username = ?");
+sqlStatement2.setString(1, blabberUsername);
+sqlStatement2.execute();
 			/* END EXAMPLE VULNERABILITY */
 
 		} catch (SQLException e) {
